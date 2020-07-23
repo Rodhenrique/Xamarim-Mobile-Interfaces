@@ -47,14 +47,6 @@ namespace Web_Api.Repositories
             }
         }
 
-        public List<CompraIngressos> MeusIngressos(int id)
-        {
-            using (WSTower_appContext ctx = new WSTower_appContext())
-            {
-                return ctx.CompraIngressos.ToList().FindAll(c => c.IdUsuarioNavigation.Id == id);
-            }
-        }
-
         public void atuazliarId(CompraIngressos ingressosAtualizado)
         {
             using (WSTower_appContext ctx = new WSTower_appContext())

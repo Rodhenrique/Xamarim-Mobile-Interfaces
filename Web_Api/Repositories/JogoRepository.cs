@@ -53,14 +53,14 @@ namespace Web_Api.Repositories
             {
                 if (data != null && estadio != null)
                 {
-                    return ctx.Jogos.ToList().FindAll(J => J.IdEstadioNavigation.Nome == estadio && J.Data == data);
+                    return ctx.Jogos.ToList().FindAll(J => J.IdEstadioNavigation.Nome == estadio && J.Horario == data);
                 }
                 else if (data == null && estadio != null)
                 {
                     return ctx.Jogos.ToList().FindAll(J => J.IdEstadioNavigation.Nome == estadio);
                 }else if (data != null && estadio == null)
                 {
-                    return ctx.Jogos.ToList().FindAll(J => J.Data == data);
+                    return ctx.Jogos.ToList().FindAll(J => J.Horario == data);
                 }
                 else
                 {
@@ -79,8 +79,7 @@ namespace Web_Api.Repositories
                 atual.IdEstadio = (atual.IdEstadio == null) ? atual.IdEstadio : novo.IdEstadio;
                 atual.IdTimeCasa = (atual.IdTimeCasa == null) ? atual.IdTimeCasa : novo.IdTimeCasa;
                 atual.IdTimeVisitante = (atual.IdTimeVisitante == null) ? atual.IdTimeVisitante : novo.IdTimeVisitante;
-                atual.Data = (atual.Data == null) ? atual.Data : novo.Data;
-                atual.Endereço = (atual.Endereço == null) ? atual.Endereço : novo.Endereço;
+                atual.Horario = (atual.Horario == null) ? atual.Horario : novo.Horario;
                 atual.Detalhes = (atual.Detalhes == null) ? atual.Detalhes : novo.Detalhes;
                 atual.Horario = (atual.Horario == null) ? atual.Horario : novo.Horario;
 

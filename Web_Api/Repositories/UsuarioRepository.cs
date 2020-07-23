@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -76,6 +78,15 @@ namespace Web_Api.Repositories
             using (WSTower_appContext ctx = new WSTower_appContext())
             {
                 return ctx.Usuario.ToList();
+            }
+        }
+
+        public List<IngressosVendidos> MeusIngressos(int id)
+        {
+            using (WSTower_appContext ctx = new WSTower_appContext())
+            {
+                return ctx.IngressosVendidos.Include(I => I.IdCompraNavigation)
+                    .ToList().FindAll(I => I.IdCompraNavigation.IdUsuario == id);
             }
         }
     }

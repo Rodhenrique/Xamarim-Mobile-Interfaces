@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Web_Api.Models;
 using Web_Api.Repositories;
@@ -11,6 +12,7 @@ namespace Web_Api.Controllers
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class JogoController : ControllerBase
     {
         JogoRepository repository = new JogoRepository();

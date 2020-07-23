@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Web_Api.Models;
 using Web_Api.Repositories;
@@ -11,6 +12,7 @@ namespace Web_Api.Controllers
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class EstadioController : ControllerBase
     {
         EstadioRepository repository = new EstadioRepository();
@@ -37,6 +39,7 @@ namespace Web_Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "1")]
         public IActionResult Adiciona(Estadio novo)
         {
             if (novo == null)
@@ -52,6 +55,7 @@ namespace Web_Api.Controllers
 
 
         [HttpPut]
+        [Authorize(Roles = "1")]
         public IActionResult atualizar(Estadio estadio)
         {
             repository.atuazliarId(estadio);
@@ -59,6 +63,7 @@ namespace Web_Api.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "1")]
         public IActionResult deletar(int id)
         {
             repository.Deletar(id);

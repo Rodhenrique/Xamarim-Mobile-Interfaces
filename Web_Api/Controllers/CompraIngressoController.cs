@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Web_Api.Models;
 using Web_Api.Repositories;
@@ -11,6 +12,7 @@ namespace Web_Api.Controllers
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CompraIngressoController : ControllerBase
     {
         CompraIngressoRepository repository = new CompraIngressoRepository();
@@ -22,6 +24,7 @@ namespace Web_Api.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "1")]
         public IActionResult BuscaPorId(int id)
         {
             var buscar = repository.BuscarPorId(id);
@@ -52,6 +55,7 @@ namespace Web_Api.Controllers
 
 
         [HttpPut]
+        [Authorize(Roles = "1")]
         public IActionResult atualizar(CompraIngressos ingressos)
         {
             repository.atuazliarId (ingressos);
@@ -59,6 +63,7 @@ namespace Web_Api.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "1")]
         public IActionResult deletar(int id)
         {
             repository.Deletar(id);

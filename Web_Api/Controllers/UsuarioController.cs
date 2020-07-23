@@ -4,6 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -58,12 +59,21 @@ namespace Web_Api.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "1")]
         public IActionResult Listar()
         {
             return Ok(repository.Listar());
         }
 
+        [HttpGet("Meus Ingressos/{id}")]
+        [Authorize]
+        public IActionResult MeusIngressos(int id)
+        {
+            return Ok(repository.MeusIngressos(id));
+        }
+
         [HttpGet("{id}")]
+        [Authorize(Roles = "1")]
         public IActionResult BuscaPorId(int id)
         {
             var buscar = repository.BuscarPorId(id);
@@ -78,7 +88,7 @@ namespace Web_Api.Controllers
             }
         }
  
-        [HttpPost]       
+        [HttpPost]
         public IActionResult Adiciona(Usuario NovoUsuario)
         {
             if (NovoUsuario == null)
@@ -94,6 +104,7 @@ namespace Web_Api.Controllers
 
        
         [HttpPut]
+        [Authorize(Roles = "1")]
         public IActionResult atualizar(Usuario usuarioAtualizado)
         {
             repository.AtualizarIdCorpo(usuarioAtualizado);
@@ -101,6 +112,7 @@ namespace Web_Api.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "1")]
         public IActionResult deletar(int id)
         {
             repository.Deletar(id);

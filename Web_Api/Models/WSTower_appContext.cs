@@ -18,6 +18,7 @@ namespace Web_Api.Models
         public virtual DbSet<CompraIngressos> CompraIngressos { get; set; }
         public virtual DbSet<Estadio> Estadio { get; set; }
         public virtual DbSet<FormaDePagamento> FormaDePagamento { get; set; }
+        public virtual DbSet<IngressosVendidos> IngressosVendidos { get; set; }
         public virtual DbSet<Jogos> Jogos { get; set; }
         public virtual DbSet<Times> Times { get; set; }
         public virtual DbSet<TipoDeIngresso> TipoDeIngresso { get; set; }
@@ -40,34 +41,27 @@ namespace Web_Api.Models
             {
                 entity.Property(e => e.Id).HasColumnName("ID");
 
-                entity.Property(e => e.Valor)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
+                entity.Property(e => e.Valor).HasColumnType("decimal(12, 2)");
 
                 entity.HasOne(d => d.IdFormaDePagamentoNavigation)
                     .WithMany(p => p.CompraIngressos)
                     .HasForeignKey(d => d.IdFormaDePagamento)
-                    .HasConstraintName("FK__CompraIng__IdFor__47DBAE45");
+                    .HasConstraintName("FK__CompraIng__IdFor__34C8D9D1");
 
                 entity.HasOne(d => d.IdJogoNavigation)
-                    .WithMany(p => p.CompraIngressosIdJogoNavigation)
+                    .WithMany(p => p.CompraIngressos)
                     .HasForeignKey(d => d.IdJogo)
-                    .HasConstraintName("FK__CompraIng__IdJog__4AB81AF0");
-
-                entity.HasOne(d => d.IdJogosNavigation)
-                    .WithMany(p => p.CompraIngressosIdJogosNavigation)
-                    .HasForeignKey(d => d.IdJogos)
-                    .HasConstraintName("FK__CompraIng__IdJog__46E78A0C");
+                    .HasConstraintName("FK__CompraIng__IdJog__37A5467C");
 
                 entity.HasOne(d => d.IdTipoDeIngressoNavigation)
                     .WithMany(p => p.CompraIngressos)
                     .HasForeignKey(d => d.IdTipoDeIngresso)
-                    .HasConstraintName("FK__CompraIng__IdTip__49C3F6B7");
+                    .HasConstraintName("FK__CompraIng__IdTip__36B12243");
 
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.CompraIngressos)
                     .HasForeignKey(d => d.IdUsuario)
-                    .HasConstraintName("FK__CompraIng__IdUsu__48CFD27E");
+                    .HasConstraintName("FK__CompraIng__IdUsu__35BCFE0A");
             });
 
             modelBuilder.Entity<Estadio>(entity =>
@@ -88,13 +82,27 @@ namespace Web_Api.Models
             modelBuilder.Entity<FormaDePagamento>(entity =>
             {
                 entity.HasKey(e => e.IdFormaDePagamento)
-                    .HasName("PK__FormaDeP__12144A7FED5C7390");
+                    .HasName("PK__FormaDeP__12144A7F690FD8DC");
 
                 entity.Property(e => e.FormaDePagamento1)
                     .IsRequired()
                     .HasColumnName("Forma_de_Pagamento")
                     .HasMaxLength(255)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<IngressosVendidos>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.NumeroDoIngresso)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.IdCompraNavigation)
+                    .WithMany(p => p.IngressosVendidos)
+                    .HasForeignKey(d => d.IdCompra)
+                    .HasConstraintName("FK__Ingressos__IdCom__3A81B327");
             });
 
             modelBuilder.Entity<Jogos>(entity =>
@@ -105,36 +113,24 @@ namespace Web_Api.Models
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Data).HasColumnType("datetime");
-
                 entity.Property(e => e.Detalhes).HasColumnType("text");
 
-                entity.Property(e => e.Endereço)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Horario)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Jogo)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
+                entity.Property(e => e.Horario).HasColumnType("datetime");
 
                 entity.HasOne(d => d.IdEstadioNavigation)
                     .WithMany(p => p.Jogos)
                     .HasForeignKey(d => d.IdEstadio)
-                    .HasConstraintName("FK__Jogos__IdEstadio__440B1D61");
+                    .HasConstraintName("FK__Jogos__IdEstadio__31EC6D26");
 
                 entity.HasOne(d => d.IdTimeCasaNavigation)
                     .WithMany(p => p.JogosIdTimeCasaNavigation)
                     .HasForeignKey(d => d.IdTimeCasa)
-                    .HasConstraintName("FK__Jogos__IdTimeCas__4316F928");
+                    .HasConstraintName("FK__Jogos__IdTimeCas__30F848ED");
 
                 entity.HasOne(d => d.IdTimeVisitanteNavigation)
                     .WithMany(p => p.JogosIdTimeVisitanteNavigation)
                     .HasForeignKey(d => d.IdTimeVisitante)
-                    .HasConstraintName("FK__Jogos__IdTimeVis__4222D4EF");
+                    .HasConstraintName("FK__Jogos__IdTimeVis__300424B4");
             });
 
             modelBuilder.Entity<Times>(entity =>
@@ -152,7 +148,7 @@ namespace Web_Api.Models
             modelBuilder.Entity<TipoDeIngresso>(entity =>
             {
                 entity.HasKey(e => e.IdTipoDeIngresso)
-                    .HasName("PK__TipoDeIn__F2745ADF8F595050");
+                    .HasName("PK__TipoDeIn__F2745ADFC93626B9");
 
                 entity.Property(e => e.TipoDeIngresso1)
                     .IsRequired()
@@ -166,7 +162,7 @@ namespace Web_Api.Models
             modelBuilder.Entity<Usuario>(entity =>
             {
                 entity.HasIndex(e => e.NomeUsuario)
-                    .HasName("UQ__Usuario__06940B9AD30358B4")
+                    .HasName("UQ__Usuario__06940B9A5102F6C3")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
