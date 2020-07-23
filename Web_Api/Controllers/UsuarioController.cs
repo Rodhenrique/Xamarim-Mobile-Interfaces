@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using Web_Api.Models;
 using Web_Api.Repositories;
 using Web_Api.ViewsModels;
@@ -28,7 +31,30 @@ namespace Web_Api.Controllers
             {
                 return NotFound("E-mail ou senha inválidos");
             }
-            return StatusCode(202, usuarioBuscado);
+
+            var claims = new[]
+            {
+                new Claim(JwtRegisteredClaimNames.Email, usuarioBuscado.Email),
+                new Claim(JwtRegisteredClaimNames.Jti, usuarioBuscado.Id.ToString()),
+                new Claim(ClaimTypes.Role, usuarioBuscado.Acesso.ToString())
+            };
+
+            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("WsTower-chave-autenticacao"));
+
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                issuer: "WsTower.WebApi",                // emissor do token
+                audience: "WsTower.WebApi",              // destinatário do token
+                claims: claims,
+                expires: DateTime.Now.AddHours(2),
+                signingCredentials: creds
+            );
+
+            return Ok(new
+            {
+                token = new JwtSecurityTokenHandler().WriteToken(token)
+            });
         }
 
         [HttpGet]
