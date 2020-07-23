@@ -15,6 +15,14 @@ namespace Ws_Towers.Views
         public FrmSplash()
         {
             InitializeComponent();
+            Animation();
+        }
+
+        public async Task Animation()
+        {
+            logoImagem.Opacity = 0;
+            await logoImagem.FadeTo(1, 5000);
+            App.Current.MainPage = new NavigationPage(new FrmLogin());
         }
     }
 }

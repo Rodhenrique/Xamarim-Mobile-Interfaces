@@ -15,6 +15,17 @@ namespace Ws_Towers.Views
         public FrmLogin()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
+        }
+
+        private void Btn_Login(object sender, EventArgs e)
+        {
+            App.Current.MainPage = new NavigationPage(new Master());
+        }
+
+        private void Btn_Cadastra(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new FrmCadastro());
         }
     }
 }
