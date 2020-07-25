@@ -499,3 +499,4 @@ C:\Users\henri\Desktop\Xamarim-Mobile-Interfaces\Ws_Towers\Ws_Towers.Android\obj
 C:\Users\henri\Desktop\Xamarim-Mobile-Interfaces\Ws_Towers\Ws_Towers.Android\obj\Debug\90\res\drawable\lock.png
 C:\Users\henri\Desktop\Xamarim-Mobile-Interfaces\Ws_Towers\Ws_Towers.Android\obj\Debug\90\res\drawable\user.png
 C:\Users\henri\Desktop\Xamarim-Mobile-Interfaces\Ws_Towers\Ws_Towers.Android\obj\Debug\90\res\drawable\app_logo.png
+C:\Users\henri\Desktop\Xamarim-Mobile-Interfaces\Ws_Towers\Ws_Towers.Android\obj\Debug\90\android\assets\Newtonsoft.Json.dll

@@ -12,9 +12,15 @@ namespace Ws_Towers.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FrmMeusIngressos : ContentPage
     {
+
         public FrmMeusIngressos()
         {
             InitializeComponent();
+        }
+
+        private void Btn_Detalhes(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new FrmDetalhesEvento());
         }
     }
 }

@@ -4,12 +4,57 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             Title="Meus Ingressos"
              x:Class="Ws_Towers.Views.FrmMeusIngressos">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <StackLayout>
+                <ListView ItemsSource="{Binding Monkeys}" HasUnevenRows="true">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="10" Spacing="0">
+                                    <StackLayout Orientation="Horizontal">
+                                        <StackLayout>
+                                            <Label Text="{Binding Nome}" FontSize="11" TextColor="{StaticResource azul}" />
+                                            <Label FontSize="11" Text="{Binding Album}" VerticalOptions="End" />
+                                        </StackLayout>
+
+                                        <StackLayout>
+                                            <StackLayout Orientation="Horizontal" >
+                                                <Label Text="Hórario:" FontSize="11"/>
+                                                <Label  Text="{Binding Horaio}" FontSize="11"/>
+                                            </StackLayout>
+                                            <Label  Text="{Binding Local}" FontSize="11" TextColor="{StaticResource vermelho}" />
+                                            <Label  Text="{Binding Data}" FontSize="11"/>
+                                        </StackLayout>
+
+                                        <Image VerticalOptions="CenterAndExpand"
+                                       Source="{Binding ImageUrl}"
+                                       Aspect="AspectFill"
+                                       HeightRequest="110"
+                                       WidthRequest="110" HorizontalOptions="EndAndExpand"/>
+
+                                    </StackLayout>
+                                    <StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label FontSize="12" Text="Tipo de ingresso:"/>
+                                            <Label FontSize="12" Text="{Binding Disponivel}"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label FontSize="12" Text="Número do ingresso:"/>
+                                            <Label FontSize="12" Text="AXPK32D"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <Button CornerRadius="5" HeightRequest="40" Margin="5" WidthRequest="105" HorizontalOptions="CenterAndExpand" TextColor="{StaticResource textColor}" BackgroundColor="{StaticResource azul}" Text="Detalhes"/>
+                                </StackLayout>
+                                
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
+

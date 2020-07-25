@@ -12,7 +12,7 @@ namespace Ws_Towers
         {
             InitializeComponent();
 
-            MainPage = new FrmSplash();
+            MainPage = new FrmPrincipal();
         }
 
         protected override void OnStart()

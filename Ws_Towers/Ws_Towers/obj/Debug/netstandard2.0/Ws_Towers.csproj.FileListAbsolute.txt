@@ -19,5 +19,5 @@ C:\Users\henri\Desktop\Xamarim-Mobile-Interfaces\Ws_Towers\Ws_Towers\obj\Debug\n
 C:\Users\henri\Desktop\Xamarim-Mobile-Interfaces\Ws_Towers\Ws_Towers\obj\Debug\netstandard2.0\ref\Ws_Towers.dll
 C:\Users\henri\Desktop\Xamarim-Mobile-Interfaces\Ws_Towers\Ws_Towers\obj\Debug\netstandard2.0\Ws_Towers.pdb
 C:\Users\henri\Desktop\Xamarim-Mobile-Interfaces\Ws_Towers\Ws_Towers\obj\Debug\netstandard2.0\Views\Master.xaml.g.cs
-C:\Users\henri\Desktop\Xamarim-Mobile-Interfaces\Ws_Towers\Ws_Towers\obj\Debug\netstandard2.0\XamlC.stamp
 C:\Users\henri\Desktop\Xamarim-Mobile-Interfaces\Ws_Towers\Ws_Towers\obj\Debug\netstandard2.0\Views\Menu.xaml.g.cs
+C:\Users\henri\Desktop\Xamarim-Mobile-Interfaces\Ws_Towers\Ws_Towers\obj\Debug\netstandard2.0\XamlC.stamp

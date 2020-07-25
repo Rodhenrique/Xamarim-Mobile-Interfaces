@@ -14,7 +14,6 @@ using Web_Api.ViewsModels;
 
 namespace Web_Api.Controllers
 {
-    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class UsuarioController : ControllerBase

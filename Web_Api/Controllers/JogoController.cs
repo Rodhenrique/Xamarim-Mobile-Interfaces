@@ -12,7 +12,6 @@ namespace Web_Api.Controllers
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class JogoController : ControllerBase
     {
         JogoRepository repository = new JogoRepository();

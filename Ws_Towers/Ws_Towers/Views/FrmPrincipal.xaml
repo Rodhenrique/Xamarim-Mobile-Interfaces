@@ -7,10 +7,75 @@
              Title="Principal"
              x:Class="Ws_Towers.Views.FrmPrincipal">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Spacing="0">
+            <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal" Margin="5,5,5,2">
+                <Picker WidthRequest="200" Title="Selecione um estadio"  FontSize="17">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Baboon</x:String>
+                            <x:String>Capuchin Monkey</x:String>
+                            <x:String>Blue Monkey</x:String>
+                            <x:String>Squirrel Monkey</x:String>
+                            <x:String>Golden Lion Tamarin</x:String>
+                            <x:String>Howler Monkey</x:String>
+                            <x:String>Japanese Macaque</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+
+                <Picker Title="Selecione uma data" FontSize="17" WidthRequest="200">
+                    
+                </Picker>
+            </StackLayout>
+            
+        <StackLayout HeightRequest="1" BackgroundColor="Gray"></StackLayout>
+
+            <StackLayout>
+                <ListView ItemsSource="{Binding eventos}" HasUnevenRows="true">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackLayout Grid.Column="1" VerticalOptions="CenterAndExpand" Orientation="Horizontal">
+                                        <StackLayout VerticalOptions="CenterAndExpand" Spacing="25">
+                                            <Label Text="{Binding Nome}" FontSize="14" TextColor="{StaticResource azul}" />
+                                            <Label Grid.Row="1" Grid.Column="1" FontSize="12" Text="{Binding Campeonato}" VerticalOptions="End" />
+                                        </StackLayout>
+
+                                        <StackLayout Grid.Column="2" Margin="30,0,0,0">
+                                            <Label  Text="Ingresso:" FontSize="12"/>
+                                            <Label  Grid.Row="1" Text="{Binding Disponivel}" FontSize="12" TextColor="{StaticResource verde}" />
+                                            <Label  Text="{Binding Data}" FontSize="12"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    
+                                    <Image VerticalOptions="CenterAndExpand"
+                           Source="{Binding ImageUrl}"
+                           Aspect="AspectFill"
+                           HeightRequest="80"
+                           WidthRequest="80" Grid.Column="3" HorizontalOptions="EndAndExpand"/>
+
+                                    <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+                                        <Label Text="{Binding Horario}"/>
+                                        <Label Text="{Binding Local}" TextColor="{StaticResource vermelho}"/>
+                                    </StackLayout>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

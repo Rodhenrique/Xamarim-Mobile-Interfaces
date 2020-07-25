@@ -23,7 +23,7 @@
                         
                         <StackLayout Orientation="Horizontal">
                         <Image Source="User.png" WidthRequest="37"/>
-                            <local:MyEntry WidthRequest="310" Placeholder="Digite um email ou usuário"/>
+                            <local:MyEntry WidthRequest="310" Text="{Binding email}" Placeholder="Digite um email ou usuário"/>
                         </StackLayout>
                     </Frame>
 
@@ -33,7 +33,7 @@
 
                         <StackLayout Orientation="Horizontal">
                             <Image Source="lock.png" WidthRequest="37"/>
-                            <local:MyEntry WidthRequest="310" IsPassword="True" Placeholder="Digite a senha"/>
+                            <local:MyEntry WidthRequest="310" Text="{Binding senha}" IsPassword="True" Placeholder="Digite a senha"/>
                         </StackLayout>
                     </Frame>
                 </StackLayout>
@@ -41,7 +41,7 @@
             
             <Button Text="Entrar"
                     FontSize="18"
-                    Clicked="Btn_Login"
+                    Command="{Binding btnLoginCommand}"
                     TextColor="{StaticResource textColor}"
                     VerticalOptions="Center"
                     HorizontalOptions="Center"
@@ -54,7 +54,6 @@
                     VerticalOptions="EndAndExpand"
                     FontSize="20"
                     HorizontalOptions="CenterAndExpand"
-                    Clicked="Btn_Cadastra"
                     BackgroundColor="Transparent"
                     TextColor="{StaticResource azul}"/>
         </StackLayout>
